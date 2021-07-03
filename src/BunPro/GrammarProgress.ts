@@ -1,5 +1,6 @@
 import { BunproComponents } from "src/BunproComponents";
 import { Component } from "src/Component";
+import { Storage } from "src/Storage";
 
 interface Props {
     stats: number[];
@@ -23,16 +24,32 @@ export class GrammarProgress extends Component<Props> {
         });
     }
 
+    public destroy(): void {
+        if (this.panel !== null) {
+            this.panel.remove();
+        }
+        this.panel = null;
+        this.ghostsBox = null;
+        this.apprenticeBox = null;
+        this.guruBox = null;
+        this.masterBox = null;
+        this.enlightenedBox = null;
+        this.burnedBox = null;
+    }
+
     public build(element: HTMLElement): void {
-        if (this.panel === null) {
-            const panels = element.querySelectorAll('.dashboard-tile');
-            const anchor = panels[panels.length - 2];
+        const panels = element.querySelectorAll('.dashboard-tile');
+        const anchor = panels[panels.length - 2];
 
-            if (!anchor) {
-                return;
-            }
+        if (!anchor) {
+            return;
+        }
 
-        
+        if (!Storage.loadBoolean(Storage.PROGRESS_SUMMARY, true)) {
+            return;
+        }
+
+        if (!this.panel) {
             this.panel = BunproComponents.createSection('progress-panel', 'Grammar progress summary');
             this.ghostsBox = BunproComponents.createBox('ghosts-info', 'Ghosts', `${this.props.ghosts}`);
             this.apprenticeBox = BunproComponents.createBox('apprentice-info', 'Apprentice', `${this.props.stats[0] ?? 0}`);
@@ -47,14 +64,17 @@ export class GrammarProgress extends Component<Props> {
             BunproComponents.addToSection(this.masterBox, this.panel);
             BunproComponents.addToSection(this.enlightenedBox, this.panel);
             BunproComponents.addToSection(this.burnedBox, this.panel);
-
-            anchor.parentElement.insertBefore(this.panel, anchor);
         }
 
+        anchor.parentElement.insertBefore(this.panel, anchor);
         this.loadData();
     }
 
     public render(): void {
+        if (!Storage.loadBoolean(Storage.PROGRESS_SUMMARY, true)) {
+            return;
+        }
+
         if (!this.panel) {
             return;
         }
@@ -62,7 +82,7 @@ export class GrammarProgress extends Component<Props> {
         if (this.ghostsBox) {
             BunproComponents.updateBox(this.ghostsBox, 'Ghosts', `${this.props.ghosts}`);
         }
-        
+
         if (this.apprenticeBox) {
             BunproComponents.updateBox(this.apprenticeBox, 'Ghosts', `${this.props.stats[0] ?? 0}`);
         }
@@ -96,7 +116,7 @@ export class GrammarProgress extends Component<Props> {
         })).text().then((body: string) => {
             const levels: number[] = JSON.parse(body.match(/\[[\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+, [\d]+\]/)[0]);
             const stats = [0, 0, 0, 0, 0];
-            
+
             for (let i = 0; i < levels.length; i++) {
                 let stat = 0;
                 if (i < 4) {

@@ -6,10 +6,12 @@ export class Component<T> {
         this.props = props;
     }
 
-    public build(_: HTMLElement) {
+    public build(element: HTMLElement): void {
     }
 
     public render() {}
+
+    public destroy() {}
 
     public setProps(props: T): void {
         // @ts-ignore
