@@ -1,0 +1,5 @@
+yarn webpack build --mode production 
+cat bunpro.greasyfork.js > dist/bunpropp.min.js
+echo '' >> dist/bunpropp.min.js
+cat dist/bunpropp.build.js >> dist/bunpropp.min.js
+rm dist/bunpropp.build.js

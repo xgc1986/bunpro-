@@ -1,0 +1,100 @@
+:global {
+    .bpp-apprentice-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/BunproHanko1PNG.png);
+        background-size: 100px;
+        opacity: 0.3;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        right: 0;
+        transform: rotate(-15deg) scale(0.9);
+        overflow: hidden;
+    }
+    .bpp-guru-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/BunproHanko4PNG.png);
+        background-size: 100px;
+        opacity: 0.3;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        right: 0;
+        transform: rotate(-15deg) scale(0.9);
+        overflow: hidden;
+    }
+    .bpp-master-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/BunproHanko7PNG.png);
+        background-size: 100px;
+        opacity: 0.3;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        right: 0;
+        transform: rotate(-15deg) scale(0.9);
+        overflow: hidden;
+    }
+    .bpp-enlightened-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/BunproHanko10PNG.png);
+        background-size: 100px;
+        opacity: 0.3;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        right: 0;
+        transform: rotate(-15deg) scale(0.9);
+        overflow: hidden;
+    }
+    .bpp-burned-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/BunproHanko12PNG.png);
+        background-size: 100px;
+        opacity: 0.3;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        right: 0;
+        transform: rotate(-15deg) scale(0.9);
+        overflow: hidden;
+    }
+
+    .bpp-ghosts-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/GhostReviewIconPNGBlack.png);
+        background-size: 100px;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        opacity: 0.3;
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        right: 0;
+        transform: rotate(-15deg) scale(0.9);
+        overflow: hidden;
+    }
+
+    .modern-dark .bpp-ghosts-info::before {
+        background: url(https://d2o2t59m50yv2e.cloudfront.net/images/GhostReviewIconPNG.png);
+        background-size: 100px;
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+    }
+}
