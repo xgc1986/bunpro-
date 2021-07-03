@@ -19,8 +19,14 @@ export class GrammarProgress extends Component<Props> {
 
     constructor() {
         super({
-            ghosts: 0,
-            stats: [0, 0, 0, 0, 0]
+            ghosts: Storage.loadNumber(Storage.PROGRESS_SUMMARY_GHOSTS, 0),
+            stats: [
+                Storage.loadNumber(Storage.PROGRESS_SUMMARY_APPRENTICE, 0),
+                Storage.loadNumber(Storage.PROGRESS_SUMMARY_GURU, 0),
+                Storage.loadNumber(Storage.PROGRESS_SUMMARY_MASTER, 0),
+                Storage.loadNumber(Storage.PROGRESS_SUMMARY_ENLIGHTENED, 0),
+                Storage.loadNumber(Storage.PROGRESS_SUMMARY_BURNED, 0)
+            ]
         });
     }
 
@@ -134,6 +140,12 @@ export class GrammarProgress extends Component<Props> {
                 stats[stat] += levels[i];
             }
 
+            Storage.saveNumber(Storage.PROGRESS_SUMMARY_APPRENTICE, stats[0] ?? this.props.stats[0] ?? 0);
+            Storage.saveNumber(Storage.PROGRESS_SUMMARY_GURU, stats[1] ?? this.props.stats[1] ?? 0);
+            Storage.saveNumber(Storage.PROGRESS_SUMMARY_MASTER, stats[2] ?? this.props.stats[2] ?? 0);
+            Storage.saveNumber(Storage.PROGRESS_SUMMARY_ENLIGHTENED, stats[3] ?? this.props.stats[3] ?? 0);
+            Storage.saveNumber(Storage.PROGRESS_SUMMARY_BURNED, stats[4] ?? this.props.stats[4] ?? 0);
+
             this.setProps({
                 ghosts: this.props.ghosts,
                 stats
@@ -150,10 +162,12 @@ export class GrammarProgress extends Component<Props> {
             "credentials": "include"
         })).text().then((body) => {
             const ghostsRaw = body.match(/Ghost: \d+\/(\d+)/);
-            let ghosts = 0;
+            let ghosts = this.props.ghosts;
             if (ghostsRaw !== null) {
                 ghosts = parseInt(ghostsRaw[1]);
             }
+
+            Storage.saveNumber(Storage.PROGRESS_SUMMARY_GHOSTS, ghosts);
 
             this.setProps({
                 ghosts,

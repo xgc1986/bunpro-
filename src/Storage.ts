@@ -1,6 +1,14 @@
+import { isNumber } from "util";
+
 export class Storage {
 
-    public static readonly PROGRESS_SUMMARY: string = 'settings-grammar';
+    public static readonly PROGRESS_SUMMARY: string = 'progressSummary';
+    public static readonly PROGRESS_SUMMARY_APPRENTICE: string = 'progressSummaryApprentice';
+    public static readonly PROGRESS_SUMMARY_GHOSTS: string = 'progressSummaryGhosts';
+    public static readonly PROGRESS_SUMMARY_GURU: string = 'progressSummaryGuru';
+    public static readonly PROGRESS_SUMMARY_MASTER: string = 'progressSummaryMaster';
+    public static readonly PROGRESS_SUMMARY_ENLIGHTENED: string = 'progressSummaryEnlightened';
+    public static readonly PROGRESS_SUMMARY_BURNED: string = 'progressSummaryBurned';
 
     private static data: {[key: string]: number | boolean | string} = {};
 
@@ -17,6 +25,25 @@ export class Storage {
         }
     }
 
+    public static loadBoolean(key: string, def: boolean): boolean {
+        Storage.init();
+        const value = Storage.data[key];
+        if (typeof value === 'boolean') {
+            return value;
+        }
+        return def;
+    }
+    
+    public static loadNumber(key: string, def: number): number {
+        Storage.init();
+        const value = Storage.data[key];
+        if (typeof value === 'number') {
+            return value;
+        }
+
+        return def;
+    }
+
     public static saveBoolean(key: string, value: boolean) {
         try {
             Storage.init();
@@ -25,16 +52,11 @@ export class Storage {
         } catch (e) {}
     }
 
-    public static loadBoolean(key: string, def: boolean): boolean {
-        Storage.init();
-        if (Storage.data[key] === true) {
-            return true;
-        }
-
-        if (Storage.data[key] === false) {
-            return false;
-        }
-
-        return def;
+    public static saveNumber(key: string, value: number) {
+        try {
+            Storage.init();
+            Storage.data[key] = value;
+            localStorage['bpp'] = JSON.stringify(Storage.data);
+        } catch (e) {}
     }
 }
