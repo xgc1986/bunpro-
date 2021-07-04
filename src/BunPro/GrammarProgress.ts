@@ -58,11 +58,11 @@ export class GrammarProgress extends Component<Props> {
         if (!this.panel) {
             this.panel = BunproComponents.createSection('progress-panel', 'Grammar progress summary');
             this.ghostsBox = BunproComponents.createBox('ghosts-info', 'Ghosts', `${this.props.ghosts}`);
-            this.apprenticeBox = BunproComponents.createBox('apprentice-info', 'Apprentice', `${this.props.stats[0] ?? 0}`);
-            this.guruBox = BunproComponents.createBox('guru-info', 'Guru', `${this.props.stats[1] ?? 0}`);
-            this.masterBox = BunproComponents.createBox('master-info', 'Master', `${this.props.stats[2] ?? 0}`);
-            this.enlightenedBox = BunproComponents.createBox('enlightened-info', 'Apprentice', `${this.props.stats[3] ?? 0}`);
-            this.burnedBox = BunproComponents.createBox('burned-info', 'Apprentice', `${this.props.stats[4] ?? 0}`);
+            this.apprenticeBox = BunproComponents.createBox('apprentice-info', 'Novice', `${this.props.stats[0] ?? 0}`);
+            this.guruBox = BunproComponents.createBox('guru-info', 'Intermediate', `${this.props.stats[1] ?? 0}`);
+            this.masterBox = BunproComponents.createBox('master-info', 'Advanced', `${this.props.stats[2] ?? 0}`);
+            this.enlightenedBox = BunproComponents.createBox('enlightened-info', 'Expert', `${this.props.stats[3] ?? 0}`);
+            this.burnedBox = BunproComponents.createBox('burned-info', 'Master', `${this.props.stats[4] ?? 0}`);
 
             BunproComponents.addToSection(this.ghostsBox, this.panel);
             BunproComponents.addToSection(this.apprenticeBox, this.panel);
@@ -90,23 +90,23 @@ export class GrammarProgress extends Component<Props> {
         }
 
         if (this.apprenticeBox) {
-            BunproComponents.updateBox(this.apprenticeBox, 'Ghosts', `${this.props.stats[0] ?? 0}`);
+            BunproComponents.updateBox(this.apprenticeBox, 'Novice', `${this.props.stats[0] ?? 0}`);
         }
 
         if (this.guruBox) {
-            BunproComponents.updateBox(this.guruBox, 'Ghosts', `${this.props.stats[1] ?? 0}`);
+            BunproComponents.updateBox(this.guruBox, 'Intermediate', `${this.props.stats[1] ?? 0}`);
         }
 
         if (this.masterBox) {
-            BunproComponents.updateBox(this.masterBox, 'Ghosts', `${this.props.stats[2] ?? 0}`);
+            BunproComponents.updateBox(this.masterBox, 'Advanced', `${this.props.stats[2] ?? 0}`);
         }
 
         if (this.enlightenedBox) {
-            BunproComponents.updateBox(this.enlightenedBox, 'Ghosts', `${this.props.stats[3] ?? 0}`);
+            BunproComponents.updateBox(this.enlightenedBox, 'Expert', `${this.props.stats[3] ?? 0}`);
         }
 
         if (this.burnedBox) {
-            BunproComponents.updateBox(this.burnedBox, 'Ghosts', `${this.props.stats[4] ?? 0}`);
+            BunproComponents.updateBox(this.burnedBox, 'Master', `${this.props.stats[4] ?? 0}`);
         }
     }
 
